@@ -15,11 +15,17 @@
     #include <errno.h>
     #include <stddef.h>
 
+    #define ERROR -1
+    #define FAIL 84
+    #define SUCCESS 0
+
 typedef struct info {
     int robots;
-    char *rooms;
-    char *start;
-    char *tunnels;
+    char **rooms;
+    char **start;
+    char **tunnels;
 } info_t;
+
+int error_handling(int argc, char **argv);
 
 #endif

@@ -9,7 +9,7 @@ CC=gcc
 
 CFLAGS=-Wall -Werror -Wextra
 
-C_FILES = src/main.c \
+C_FILES = $(wildcard src/*.c)
 
 O_FILES = $(C_FILES:.c=.o)
 

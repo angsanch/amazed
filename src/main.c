@@ -5,11 +5,14 @@
 ** main funct
 */
 
-#include "../include/my.h"
+#include "../include/maze.h"
 
 int main(int argc, char **argv)
 {
-    if (argc != 3)
-        return 84;
-    return 0;
+    for (int i = 0; argv[i] != NULL; i++)
+        printf("%s\n", argv[i]);
+    //printf("%s", argv[2]);
+    if (error_handling(argc, argv) == ERROR)
+        return FAIL;
+    return SUCCESS;
 }
