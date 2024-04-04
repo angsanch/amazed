@@ -5,7 +5,7 @@
 ** error handling, read file
 */
 
-#include "../include/maze.h"
+#include "../../include/maze.h"
 
 
 static int check_map(char *path)
