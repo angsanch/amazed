@@ -32,6 +32,7 @@ typedef struct maze_contents {
     size_t end;//index of end room
     size_t room_count;//amount of rooms
     room **room;//all room info
+    bool *matrix;
     bool **tunels;//matrix of connections
 } maze;
 
@@ -47,6 +48,7 @@ int error_handling(int argc, char **argv);
 //Structs
 room *create_room(char *name, size_t x, size_t y);
 void destroy_room(room *r);
+maze *create_maze(size_t rooms);
 void destroy_maze(maze *m);
 
 #endif
