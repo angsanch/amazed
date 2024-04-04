@@ -45,11 +45,13 @@ void list_import(l_list *l, void **data)
 
 void list_iter(l_list *l, void(*func)(void *, void *), void *data)
 {
-    l_elem *e = l->first;
+    l_elem *next = l->first;
+    l_elem *e = NULL;
 
-    while (e != NULL){
+    while (next != NULL){
+        e = next;
+        next = e->next;
         (*func)(e->content, data);
-        e = e->next;
     }
 }
 

@@ -41,6 +41,7 @@ typedef struct dn_scene_container {
     l_list *sprites;
     l_list *textures;
     sfMusic *music;
+    sfFont *font;
     size_t id_sprite;
     char *id;
     void *creation;
@@ -63,6 +64,7 @@ typedef struct dn_environment_info {
 typedef struct dn_sprite_display_info {
     int rotate_texture;
     int rotate_outline;
+    int rotate_text;
     dn_texture *texture;
     sfIntRect rect;
     bool draw_texture;
@@ -74,6 +76,10 @@ typedef struct dn_sprite_display_info {
     sfColor circle_color;
     float circle_size;
     bool draw_circle;
+    sfText *text;
+    sfColor text_color;
+    int text_size;
+    bool draw_text;
 } dn_display_info;
 typedef struct dn_sprite_container {
     size_t id;

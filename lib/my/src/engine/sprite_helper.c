@@ -55,3 +55,8 @@ int is_on_sprite(dn_window *window, dn_sprite *sprite, int x, int y)
     return (x_diff >= 0 && x_diff <= sprite->display.rect.width &&
         y_diff >= 0 && y_diff <= sprite->display.rect.height);
 }
+
+void sprite_set_text(dn_sprite *sprite, char *str)
+{
+    sfText_setString(sprite->display.text, str);
+}

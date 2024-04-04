@@ -81,11 +81,17 @@ C_FILES = src/basic/my_strupcase.c \
 			src/engine/finder.c \
 			src/engine/sprite_helper.c \
 			src/engine/controller.c \
-            src/engine/sprite_creation.c \
+			src/engine/sprite_creation.c \
+			src/engine/sprite_creation2.c \
 			src/engine/collisions.c \
+			src/engine/buttons.c \
 
 
 O_FILES = $(C_FILES:.c=.o)
+
+ASSETS = assets/font.ttf \
+
+ASSETS_O = $(ASSETS:=.o)
 
 HEADERS = include/my.h \
 			include/structs.h \
@@ -95,8 +101,8 @@ EXTERN_H = $(subst include/,../../include/,$(HEADERS))
 
 NAME=libmy.a
 
-$(NAME): $(O_FILES)
-	ar -rsc $(NAME) $(O_FILES)
+$(NAME): $(O_FILES) $(ASSETS_O)
+	ar -rsc $(NAME) $(O_FILES) $(ASSETS_O)
 	cp $(NAME) ../
 	mkdir -p ../../include
 	cp $(HEADERS) ../../include
@@ -105,6 +111,7 @@ all: $(NAME)
 
 clean:
 	rm -f $(O_FILES)
+	rm -f $(ASSETS_O)
 
 fclean: clean
 	rm -f ../$(NAME)
@@ -112,5 +119,10 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+$(ASSETS_O): $(ASSETS)
+	xxd -i "$<" | gcc -x c - -c -o "$@"
+
+$(ASSETS): ;
 
 .PHONY: all clean fclean re

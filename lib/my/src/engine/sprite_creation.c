@@ -7,17 +7,24 @@
 
 #include "../../include/my.h"
 
-void add_sprite(dn_scene *scene)
+void add_sprite(dn_scene *scene, float x, float y)
 {
-    scene->creation = create_sprite(scene);
+    dn_sprite *sprite = create_sprite(scene);
+
+    scene->creation = sprite;
+    sprite->position.x = x;
+    sprite->position.y = y;
 }
 
 void add_sprite_set_graphics(dn_scene *scene, char *texture_id,
     void(*config)(dn_sprite *))
 {
-    dn_texture *texture = search_texture(scene, texture_id);
+    dn_texture *texture;
 
-    sprite_link_texture(scene->creation, texture);
+    if (texture_id) {
+        texture = search_texture(scene, texture_id);
+        sprite_link_texture(scene->creation, texture);
+    }
     if (config != NULL)
         config(scene->creation);
 }

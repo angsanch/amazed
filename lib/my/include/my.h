@@ -105,22 +105,26 @@ void **list_export(l_list *l, void *(*transform)(void *));
 void list_pop_first(l_list *l);
 void list_iter(l_list *l, void(*func)(void *, void *), void *data);
 ssize_t list_first_fulfil(l_list *l, int(*func)(void *, void *), void *data);
-size_t list_total_fulfil(l_list *l, int(*func)(void *, void *), void *data);
+size_t list_count_fulfil(l_list *l, int(*func)(void *, void *), void *data);
 int list_sort(l_list *l, int(*comp)(void *, void *));
 
 dn_texture *search_texture(dn_scene *scene, char *id);
 dn_sprite *search_sprite(dn_scene *scene, size_t id);
 int focus_scene(dn_window *window, char *id);
 dn_scene *create_scene(char const *id);
-void add_sprite(dn_scene *scene);
+void add_sprite(dn_scene *scene, float x, float y);
 void add_sprite_set_graphics(dn_scene *scene, char *texture_id,
     void(*config)(dn_sprite *));
 void add_sprite_set_functions(dn_scene *scene,
     void(*tick)(struct dn_sprite_container *, dn_envinfo *),
     void(*event)(struct dn_sprite_container *, dn_envinfo *));
+void add_sprite_set_text(dn_scene *scene, char *text);
+void add_sprite_set_text_style(dn_scene *scene, sfColor color, size_t size);
+void sprite_set_text(dn_sprite *sprite, char *str);
 void add_push_sprite(dn_scene *scene);
 void add_sprite_set_data(dn_scene *scene, void *data,
     void(*destroy_data)(void *));
+void create_button(dn_scene *scene, char *text, sfVector2f pos);
 void sprite_link_texture(dn_sprite *sprite, dn_texture *texture);
 void sprite_add_data(dn_sprite *sprite, void *data,
     void(*destroy_data)(void *));

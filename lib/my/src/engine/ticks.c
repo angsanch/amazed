@@ -53,7 +53,7 @@ int tick_window(dn_window *window)
         }
     }
     collisions(window);
-    list_iter(window->scene->sprites, &display_sprite, window->window);
+    list_iter(window->scene->sprites, &display_sprite, window);
     sfRenderWindow_display(window->window);
     return (1);
 }

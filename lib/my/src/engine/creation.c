@@ -8,6 +8,9 @@
 #include "../../include/my.h"
 #include "../../include/engine_utils.h"
 
+extern char assets_font_ttf;
+extern int assets_font_ttf_len;
+
 static char *path2id(char const *path)
 {
     char *result;
@@ -56,6 +59,7 @@ static void set_sprite_display(dn_display_info *display)
 {
     display->rotate_texture = 1;
     display->rotate_outline = 1;
+    display->rotate_text = 1;
     display->texture = NULL;
     display->draw_texture = true;
     display->outline = sfRectangleShape_create();
@@ -68,6 +72,10 @@ static void set_sprite_display(dn_display_info *display)
     display->circle_color = sfBlack;
     display->circle_size = 0;
     display->draw_circle = false;
+    display->text = sfText_create();
+    display->text_color = sfBlack;
+    display->text_size = 30;
+    display->draw_text = false;
 }
 
 dn_sprite *create_sprite(dn_scene *scene)
@@ -110,6 +118,8 @@ dn_scene *create_scene(char const *id)
         return (NULL);
     }
     scene->id = my_strdup(id);
+    scene->font = sfFont_createFromMemory(&assets_font_ttf,
+        assets_font_ttf_len);
     return (scene);
 }
 
