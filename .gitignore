@@ -6,3 +6,6 @@
 *~
 
 amazed
+include/my.h
+include/structs.h
+include/macros.h
