@@ -81,3 +81,12 @@ char **my_split(char const *s, char c)
     }
     return (result);
 }
+
+size_t get_pointer_array_len(void *arr_in)
+{
+    size_t i = 0;
+    void **arr = arr_in;
+
+    for (; arr[i]; i++);
+    return (i);
+}

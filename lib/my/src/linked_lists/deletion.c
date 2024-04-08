@@ -47,17 +47,3 @@ l_list *list_destroy(l_list *l)
     free(l);
     return (NULL);
 }
-
-void list_unlink(l_list *l)
-{
-    l_elem *e = l->first;
-    l_elem *prev = NULL;
-
-    while (e != NULL) {
-        prev = e;
-        e = e->next;
-        free(prev);
-    }
-    l->first = NULL;
-    l->len = 0;
-}
