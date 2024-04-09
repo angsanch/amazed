@@ -6,6 +6,10 @@
 *~
 
 amazed
+
+coding-style-reports.log
+.vscode
+
 include/my.h
 include/structs.h
 include/macros.h
