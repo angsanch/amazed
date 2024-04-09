@@ -36,14 +36,9 @@ typedef struct maze_contents {
     bool **tunels;//matrix of connections
 } maze;
 
-typedef struct info {
-    int robots;
-    char **rooms;
-    char **start;
-    char **tunnels;
-} info_t;
+int error_handling(int argc);//:puking_emoji
+maze *parse_input(void);//return pointer to maze if succesful or NULL if not
 
-int error_handling(int argc);
 
 //Structs
 room *create_room(char *name, size_t x, size_t y);
