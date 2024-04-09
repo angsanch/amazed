@@ -41,7 +41,7 @@ maze *parse_input(void);//return pointer to maze if succesful or NULL if not
 //Structs
 room *create_room(char *name, size_t x, size_t y);
 void destroy_room(room *r);
-maze *create_maze(size_t rooms);
+int add_maze_matrix(maze *m, size_t rooms);
 void destroy_maze(maze *m);
 
 //functs
