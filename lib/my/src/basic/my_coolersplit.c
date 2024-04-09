@@ -92,10 +92,10 @@ static void *delete_splited_t(splited_t *spl, int delete_result)
     return (NULL);
 }
 
-static int init_splited_t(splited_t *spl, char const *s, char const *separators)
+static int init_splited_t(splited_t *spl, char const *s, char const *separtrs)
 {
     my_memset(spl, 0, sizeof(splited_t));
-    spl->separators = separators;
+    spl->separators = separtrs;
     spl->str = s;
     spl->word_count = word_count(spl);
     if (spl->word_count < 0)

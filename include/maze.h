@@ -36,7 +36,7 @@ typedef struct maze_t_contents {
     bool **tunels;//matrix of connections
 } maze_t;
 
-maze_t *parse_input(void);//return pointer to maze_t if succesful or NULL if not
+maze_t *parse_input(void);//return pointer to maze if succesful or NULL if not
 
 //Structs
 room_t *create_room_t(char *name, size_t x, size_t y);

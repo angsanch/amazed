@@ -43,7 +43,8 @@ static void merge_lists(l_elem_t **head, size_t left_size, size_t right_size,
         *head = left;
 }
 
-static void merge_sort(l_elem_t **first, size_t size, int(*comp)(void *, void *))
+static void merge_sort(l_elem_t **first, size_t size,
+    int(*comp)(void *, void *))
 {
     size_t left_size = size / 2;
     size_t right_size = size - left_size;
