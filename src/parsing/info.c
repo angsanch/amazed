@@ -8,7 +8,7 @@
 #include "../../include/maze.h"
 #include "../../include/my.h"
 
-char *get_buffer(void)
+char *get_buffer(int nline)
 {
     char *buffer = NULL;
     int err = 0;

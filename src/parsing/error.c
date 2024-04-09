@@ -23,14 +23,16 @@ static int check_map(void)
 {
     maze *amazed = my_calloc(sizeof(maze), 1);
     char *buffer = NULL;
+    int i = 0;
 
     if (amazed == NULL)
         return ERROR;
     while (1){
-        buffer = get_buffer();
+        buffer = get_buffer(i);
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
         clean_str(buffer);
+        i++;
     }
     return SUCCESS;
 }
