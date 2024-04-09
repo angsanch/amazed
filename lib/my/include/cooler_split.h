@@ -15,6 +15,6 @@ typedef struct coolersplit_context {
     char **result;
     size_t offset;
     char on_block;
-} splited;
+} splited_t;
 
 #endif

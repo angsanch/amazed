@@ -10,8 +10,8 @@
 
 static void call_sprite_tick(void *sprite_void, void *env_void)
 {
-    dn_sprite *sprite = sprite_void;
-    dn_envinfo *env = env_void;
+    dn_sprite_t *sprite = sprite_void;
+    dn_envinfo_t *env = env_void;
 
     if (sprite->tick != NULL)
         (sprite->tick)(sprite, env);
@@ -19,8 +19,8 @@ static void call_sprite_tick(void *sprite_void, void *env_void)
 
 static void call_sprite_event(void *sprite_void, void *env_void)
 {
-    dn_sprite *sprite = sprite_void;
-    dn_envinfo *env = env_void;
+    dn_sprite_t *sprite = sprite_void;
+    dn_envinfo_t *env = env_void;
 
     if (sprite->event != NULL)
         (sprite->event)(sprite, env);
@@ -34,10 +34,10 @@ static float get_timedelta(sfClock *clock)
     return (timedelta);
 }
 
-int tick_window(dn_window *window)
+int tick_window(dn_window_t *window)
 {
     sfEvent event;
-    dn_envinfo env = {get_timedelta(window->clock), window, &event};
+    dn_envinfo_t env = {get_timedelta(window->clock), window, &event};
 
     sfRenderWindow_clear(window->window, sfBlack);
     list_iter(window->scene->sprites, &call_sprite_tick, &env);

@@ -13,7 +13,7 @@
     #include <stdlib.h>
 
 //flags "-+ #0"
-typedef struct data_parameter {
+typedef struct data_parameter_t {
     char specifier;
     bool flags[5];
     int width;
@@ -21,26 +21,26 @@ typedef struct data_parameter {
     int length;
     size_t characters;
     char *str;
-} parameter;
+} parameter_t;
 
 int my_printf(char const *format, ...);
 char *genericf(char const *format, va_list *ap);
-parameter *parse_parameter(char const *format, int *i);
-void destroy_param(parameter *p);
-char *prepare_parts(parameter *param, char *sign, char *number);
+parameter_t *parse_parameter_t(char const *format, int *i);
+void destroy_param(parameter_t *p);
+char *prepare_parts(parameter_t *param, char *sign, char *number);
 void set_base(char specifier, char *base);
-void set_sign(parameter *param, int plus, char *sign);
+void set_sign(parameter_t *param, int plus, char *sign);
 char *my_lluitoa_base(unsigned long long int nb, char const *base,
     int min_len);
 
-char *signed_decimal_integer(parameter *param, va_list *ap, int n);
-char *unsigned_decimal_integer(parameter *param, va_list *ap, int n);
-char *print_float(parameter *param, va_list *ap, int n);
-char *length_exporter(parameter *param, va_list *ap, int n);
-char *character_print(parameter *param, va_list *ap, int n);
-char *string_print(parameter *param, va_list *ap, int n);
-char *pointer_print(parameter *param, va_list *ap, int n);
-char *length_exporter(parameter *param, va_list *ap, int n);
-char *print_percentage(parameter *param, va_list *ap, int n);
+char *signed_decimal_integer(parameter_t *param, va_list *ap, int n);
+char *unsigned_decimal_integer(parameter_t *param, va_list *ap, int n);
+char *print_float(parameter_t *param, va_list *ap, int n);
+char *length_exporter(parameter_t *param, va_list *ap, int n);
+char *character_print(parameter_t *param, va_list *ap, int n);
+char *string_print(parameter_t *param, va_list *ap, int n);
+char *pointer_print(parameter_t *param, va_list *ap, int n);
+char *length_exporter(parameter_t *param, va_list *ap, int n);
+char *print_percentage(parameter_t *param, va_list *ap, int n);
 
 #endif

@@ -7,9 +7,9 @@
 
 #include "../../include/my.h"
 
-void add_sprite_set_text_style(dn_scene *scene, sfColor color, size_t size)
+void add_sprite_set_text_style(dn_scene_t *scene, sfColor color, size_t size)
 {
-    dn_sprite *sprite = scene->creation;
+    dn_sprite_t *sprite = scene->creation;
 
     sprite->display.draw_text = true;
     sprite->display.text_color = color;
@@ -17,7 +17,7 @@ void add_sprite_set_text_style(dn_scene *scene, sfColor color, size_t size)
         sprite->display.text_size = size;
 }
 
-void add_sprite_set_text(dn_scene *scene, char *text)
+void add_sprite_set_text(dn_scene_t *scene, char *text)
 {
     sprite_set_text(scene->creation, text);
 }

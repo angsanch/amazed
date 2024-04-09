@@ -5,7 +5,7 @@ use strict;
 # gmin.pl taille densite nb home name end name
 if (scalar @ARGV < 3)
 {
-    print "usage : laby_gen.pl size density nb_of_robots\nWhen size is the number of rooms and density the percentage of probability of connexions between rooms\n";
+    print "usage : laby_gen.pl size density nb_of_robots\nWhen size is the number of room_ts and density the percentage of probability of connexions between room_ts\n";
     exit -1;
 }
 

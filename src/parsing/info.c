@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** amazed
+** amaze_td
 ** File description:
 ** error handling, read file
 */

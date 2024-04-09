@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** amazed
+** amaze_td
 ** File description:
 ** error handling, read file
 */
@@ -21,11 +21,11 @@ char *clean_str(char *line)
 
 static int check_map(void)
 {
-    maze *amazed = my_calloc(sizeof(maze), 1);
+    maze_t *amaze_td = my_calloc(sizeof(maze_t), 1);
     char *buffer = NULL;
     int i = 0;
 
-    if (amazed == NULL)
+    if (amaze_td == NULL)
         return ERROR;
     while (1){
         buffer = get_buffer();
@@ -38,7 +38,7 @@ static int check_map(void)
     return SUCCESS;
 }
 
-maze *parse_input(void)
+maze_t *parse_input(void)
 {
     if (check_map() == ERROR)
         return NULL;

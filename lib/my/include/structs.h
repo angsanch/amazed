@@ -11,61 +11,61 @@
     #include <SFML/Graphics.h>
     #include <SFML/Audio.h>
 
-typedef struct file_buffer_container {
+typedef struct file_buffer_t_container {
     char *buffer;
     size_t buff_len;
     char *line;
     ssize_t len;
-} file_buffer;
+} file_buffer_t;
 
 typedef struct linked_list_element {
     void *content;
     struct linked_list_element *next;
-} l_elem;
+} l_elem_t;
 typedef struct linked_list_container {
     size_t len;
-    l_elem *first;
+    l_elem_t *first;
     void(*del)(void *);
-} l_list;
+} l_list_t;
 
 
-typedef struct dn_collision_sprites dn_coll_sprites;
+typedef struct dn_collision_sprites dn_coll_sprites_t;
 
-typedef struct dn_texture_container {
+typedef struct dn_texture_t_container {
     char *id;
     sfTexture *texture;
     size_t x_tiles;
     size_t y_tiles;
-} dn_texture;
-typedef struct dn_scene_container {
-    l_list *sprites;
-    l_list *textures;
+} dn_texture_t;
+typedef struct dn_scene_t_container {
+    l_list_t *sprites;
+    l_list_t *textures;
     sfMusic *music;
     sfFont *font;
     size_t id_sprite;
     char *id;
     void *creation;
-} dn_scene;
-typedef struct dn_window_container {
+} dn_scene_t;
+typedef struct dn_window_t_container {
     sfRenderWindow *window;
     sfClock *clock;
-    dn_scene *scene;
-    l_list *scenes;
+    dn_scene_t *scene;
+    l_list_t *scenes;
     sfVector2i resolution;
     sfVector2i size;
-    void(*manage_collision)(dn_coll_sprites *, struct dn_window_container *);
+    void(*manage_collision)(dn_coll_sprites_t *, struct dn_window_t_container *);
     bool to_be_closed;
-} dn_window;
+} dn_window_t;
 typedef struct dn_environment_info {
     float time_delta;
-    dn_window *window;
+    dn_window_t *window;
     sfEvent *event;
-}dn_envinfo;
-typedef struct dn_sprite_display_info {
+}dn_envinfo_t;
+typedef struct dn_sprite_t_display_info {
     int rotate_texture;
     int rotate_outline;
     int rotate_text;
-    dn_texture *texture;
+    dn_texture_t *texture;
     sfIntRect rect;
     bool draw_texture;
     sfRectangleShape *outline;
@@ -80,21 +80,21 @@ typedef struct dn_sprite_display_info {
     sfColor text_color;
     int text_size;
     bool draw_text;
-} dn_display_info;
-typedef struct dn_sprite_container {
+} dn_display_info_t;
+typedef struct dn_sprite_t_container {
     size_t id;
     sfSprite *sprite;
     float angle;
     sfVector2f position;
     sfVector2f offset;
     sfVector2f center;
-    dn_display_info display;
-    void(*tick)(struct dn_sprite_container *, dn_envinfo *);
-    void(*event)(struct dn_sprite_container *, dn_envinfo *);
+    dn_display_info_t display;
+    void(*tick)(struct dn_sprite_t_container *, dn_envinfo_t *);
+    void(*event)(struct dn_sprite_t_container *, dn_envinfo_t *);
     void(*destroy_data)(void *);
     bool collision;
     void *data;
-} dn_sprite;
+} dn_sprite_t;
 struct dn_collision_sprites {
     size_t id1;
     size_t id2;

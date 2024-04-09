@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "../../include/my.h"
 
-void delete_elem(l_elem *e, void(*del)(void *))
+void delete_elem(l_elem_t *e, void(*del)(void *))
 {
     if (e == NULL)
         return;
@@ -17,16 +17,16 @@ void delete_elem(l_elem *e, void(*del)(void *))
     e->content = NULL;
 }
 
-void destroy_elem(l_elem *e, void(*del)(void *))
+void destroy_elem(l_elem_t *e, void(*del)(void *))
 {
     delete_elem(e, del);
     free(e);
 }
 
-void list_delete(l_list *l)
+void list_delete(l_list_t *l)
 {
     size_t i = 0;
-    l_elem *current;
+    l_elem_t *current;
 
     if (l == NULL)
         return;
@@ -41,7 +41,7 @@ void list_delete(l_list *l)
     l->del = NULL;
 }
 
-l_list *list_destroy(l_list *l)
+l_list_t *list_destroy(l_list_t *l)
 {
     list_delete(l);
     free(l);

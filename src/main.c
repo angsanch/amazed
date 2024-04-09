@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** amazed
+** amaze_td
 ** File description:
 ** main funct
 */
@@ -9,13 +9,13 @@
 
 int main(int argc, char **)
 {
-    maze *m;
+    maze_t *m;
 
     if (argc != 1)
-        return (report_error("This program doesnt need parameters\n", 84));
+        return (report_error("This program doesnt need parameter_ts\n", 84));
     m = parse_input();
     if (m == NULL)
-        return (report_error("Error preparing maze.\n", 84));
-    destroy_maze(m);
+        return (report_error("Error preparing maze_t.\n", 84));
+    destroy_maze_t(m);
     return (0);
 }

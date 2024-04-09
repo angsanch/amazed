@@ -8,7 +8,7 @@
 #include "../../include/my.h"
 
 //sfFloatRect bounds = sfText_getLocalBounds(sprite->display.text);
-void config_button(dn_sprite *sprite)
+void config_button(dn_sprite_t *sprite)
 {
     sprite->display.outline_size.x = 10;
     sprite->display.outline_size.y = 10;
@@ -16,7 +16,7 @@ void config_button(dn_sprite *sprite)
     sprite->display.draw_outline = true;
 }
 
-void create_button(dn_scene *scene, char *text, sfVector2f pos)
+void create_button(dn_scene_t *scene, char *text, sfVector2f pos)
 {
     add_sprite(scene, pos.x, pos.y);
     add_sprite_set_text_style(scene, sfWhite, 30);

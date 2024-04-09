@@ -1,15 +1,15 @@
 /*
 ** EPITECH PROJECT, 2024
-** rooms.c
+** room_ts.c
 ** File description:
-** Manage room structs
+** Manage room_t structs
 */
 
 #include "../../include/maze.h"
 
-room *create_room(char *name, size_t x, size_t y)
+room_t *create_room_t(char *name, size_t x, size_t y)
 {
-    room *r = malloc(sizeof(room) * 1);
+    room_t *r = malloc(sizeof(room_t) * 1);
 
     if (r == NULL)
         return (NULL);
@@ -23,7 +23,7 @@ room *create_room(char *name, size_t x, size_t y)
     return (r);
 }
 
-void destroy_room(room *r)
+void destroy_room_t(room_t *r)
 {
     if (r == NULL)
         return;

@@ -24,25 +24,25 @@ typedef struct room_information {
     char *name;
     size_t x;
     size_t y;
-} room;
+} room_t;
 
-typedef struct maze_contents {
+typedef struct maze_t_contents {
     size_t bots;//amount of bots
-    size_t start;//index of start room
-    size_t end;//index of end room
-    size_t room_count;//amount of rooms
-    room **room;//all room info
+    size_t start;//index of start room_t
+    size_t end;//index of end room_t
+    size_t room_t_count;//amount of room_ts
+    room_t **room_t;//all room_t info
     bool *matrix;
     bool **tunels;//matrix of connections
-} maze;
+} maze_t;
 
-maze *parse_input(void);//return pointer to maze if succesful or NULL if not
+maze_t *parse_input(void);//return pointer to maze_t if succesful or NULL if not
 
 //Structs
-room *create_room(char *name, size_t x, size_t y);
-void destroy_room(room *r);
-int add_maze_matrix(maze *m, size_t rooms);
-void destroy_maze(maze *m);
+room_t *create_room_t(char *name, size_t x, size_t y);
+void destroy_room_t(room_t *r);
+int add_maze_t_matrix(maze_t *m, size_t room_ts);
+void destroy_maze_t(maze_t *m);
 
 //functs
 char *get_buffer(void);

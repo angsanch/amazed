@@ -7,7 +7,7 @@
 
 #include "../../include/my.h"
 
-void limit_fps(dn_window *window, unsigned int limit)
+void limit_fps(dn_window_t *window, unsigned int limit)
 {
     sfRenderWindow_setFramerateLimit(window->window, limit);
 }

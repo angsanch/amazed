@@ -7,7 +7,7 @@
 
 #include "../../include/my.h"
 
-static void display_sprite_texture(dn_sprite *sprite, sfRenderWindow *window)
+static void display_sprite_texture(dn_sprite_t *sprite, sfRenderWindow *window)
 {
     if (sprite->display.texture == NULL || !sprite->display.draw_texture)
         return;
@@ -20,7 +20,7 @@ static void display_sprite_texture(dn_sprite *sprite, sfRenderWindow *window)
     sfRenderWindow_drawSprite(window, sprite->sprite, NULL);
 }
 
-static void display_sprite_outline(dn_sprite *sprite, sfRenderWindow *window)
+static void display_sprite_outline(dn_sprite_t *sprite, sfRenderWindow *window)
 {
     if (sprite->display.outline == NULL || !sprite->display.draw_outline)
         return;
@@ -37,7 +37,7 @@ static void display_sprite_outline(dn_sprite *sprite, sfRenderWindow *window)
     sfRenderWindow_drawRectangleShape(window, sprite->display.outline, NULL);
 }
 
-static void display_sprite_circle(dn_sprite *sprite, sfRenderWindow *window)
+static void display_sprite_circle(dn_sprite_t *sprite, sfRenderWindow *window)
 {
     if (sprite->display.circle == NULL || !sprite->display.draw_circle)
         return;
@@ -52,7 +52,7 @@ static void display_sprite_circle(dn_sprite *sprite, sfRenderWindow *window)
     sfRenderWindow_drawCircleShape(window, sprite->display.circle, NULL);
 }
 
-static void display_sprite_text(dn_sprite *sprite, dn_window *window)
+static void display_sprite_text(dn_sprite_t *sprite, dn_window_t *window)
 {
     sfFloatRect bounds = sfText_getGlobalBounds(sprite->display.text);
 
@@ -70,8 +70,8 @@ static void display_sprite_text(dn_sprite *sprite, dn_window *window)
 
 void display_sprite(void *sprite_void, void *window_void)
 {
-    dn_sprite *sprite = sprite_void;
-    dn_window *window = window_void;
+    dn_sprite_t *sprite = sprite_void;
+    dn_window_t *window = window_void;
 
     sprite->center = (sfVector2f){sprite->position.x - sprite->offset.x,
         sprite->position.y - sprite->offset.y};
