@@ -13,6 +13,7 @@ C_FILES = src/main.c \
 			src/tools/maze.c \
 			src/tools/rooms.c \
 			src/parsing/error.c \
+			src/parsing/info.c
 
 O_FILES = $(C_FILES:.c=.o)
 

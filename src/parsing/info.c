@@ -8,17 +8,17 @@
 #include "../../include/maze.h"
 #include "../../include/my.h"
 
-char *get_buffer(int nline)
+char *get_buffer(void)
 {
     char *buffer = NULL;
-    int err = 0;
-    size_t len;
+    int len = 0;
+    size_t size = 0;
 
-    err = getline(&buffer, &len, stdin);
-    if (err < 0)
+    len = getline(&buffer, &size, stdin);
+    if (len < 0)
         return NULL;
-    if (buffer[err - 1] == '\n')
-        buffer[err - 1] = '\0';
+    if (buffer[len - 1] == '\n')
+        buffer[len - 1] = '\0';
     for (int i = 0; buffer[i] != '\0'; i++) {
         if (buffer[i] == '\t')
             buffer[i] = ' ';

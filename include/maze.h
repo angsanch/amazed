@@ -45,5 +45,5 @@ maze *create_maze(size_t rooms);
 void destroy_maze(maze *m);
 
 //functs
-char *get_buffer(int nline);
+char *get_buffer(void);
 #endif

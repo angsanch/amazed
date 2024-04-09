@@ -10,7 +10,7 @@
 
 char *clean_str(char *line)
 {
-    my_strreplace(line, "##", "-1");
+    line = my_strreplace(line, "##", "\255");
     for (int i = 0; i != '\n'; i++) {
         if (line[i] == '#')
             line[i] = '\n';
@@ -28,7 +28,7 @@ static int check_map(void)
     if (amazed == NULL)
         return ERROR;
     while (1){
-        buffer = get_buffer(i);
+        buffer = get_buffer();
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
         clean_str(buffer);
