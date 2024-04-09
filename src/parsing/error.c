@@ -15,7 +15,7 @@ char *clean_str(char *line)
         if (line[i] == '#')
             line[i] = '\n';
     }
-    printf(line);
+    my_printf("%s", line);
     return (line);
 }
 
@@ -31,7 +31,8 @@ static int check_map(void)
         buffer = get_buffer();
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
-        clean_str(buffer);
+        buffer = clean_str(buffer);
+        my_printf("%d\n", i);
         i++;
     }
     return SUCCESS;
