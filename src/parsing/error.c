@@ -40,11 +40,14 @@ char *clean_str(char *line)
 static int check_map()
 {
     maze *amazed = my_calloc(sizeof(maze), 1);
-    char *buffer = get_buffer();
+    char *buffer = NULL;
 
     if (amazed == NULL)
         return ERROR;
-    for (int i = 0; i <= 1; i++) {
+    while (1){
+        buffer = get_buffer();
+        if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
+            break;
         clean_str(buffer);
     }
     return SUCCESS;
