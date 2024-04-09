@@ -6,28 +6,57 @@
 */
 
 #include "../../include/maze.h"
+#include "../../include/my.h"
 
-
-static int check_map(char *path)
+char *get_buffer(void)
 {
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
+    char *buffer = NULL;
+    int err = 0;
+    size_t len;
 
-    read = getline(&line, &len, stdin);
-    if (read == -1)
+    err = getline(&buffer, &len, stdin);
+    if (err < 0)
+        return NULL;
+    if (buffer[err - 1] == '\n')
+        buffer[err - 1] = '\0';
+    for (int i = 0; buffer[i] != '\0'; i++) {
+        if (buffer[i] == '\t')
+            buffer[i] = ' ';
+    }
+    return (buffer);
+}
+
+char *clean_str(char *line)
+{
+    my_strreplace(line, "##", "-1");
+    for(int i = 0; i != '\n'; i++) {
+        if (line[i] == '#')
+            line[i] = '\n';
+    }
+    printf(line);
+    return(line);
+}
+
+static int check_map()
+{
+    maze *amazed = my_calloc(sizeof(maze), 1);
+    char *buffer = get_buffer();
+
+    if (amazed == NULL)
         return ERROR;
-    free(line);
+    for (int i = 0; i <= 1; i++) {
+        clean_str(buffer);
+    }
     return SUCCESS;
 }
 
-int error_handling(int argc, char **argv)
+int error_handling(int argc)
 {
     if (argc != 1){
         write(2, "Error, invalid amount of arguments.\n", 37);
         return ERROR;
     }
-    if (check_map(argv[2]) == ERROR)
+    if (check_map() == ERROR)
         return ERROR;
     return SUCCESS;
 }

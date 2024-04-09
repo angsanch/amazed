@@ -7,9 +7,9 @@
 
 #include "../include/maze.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **)
 {
-    if (error_handling(argc, argv) == ERROR)
+    if (error_handling(argc) == ERROR)
         return FAIL;
     return SUCCESS;
 }

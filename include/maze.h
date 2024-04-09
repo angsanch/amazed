@@ -43,7 +43,7 @@ typedef struct info {
     char **tunnels;
 } info_t;
 
-int error_handling(int argc, char **argv);
+int error_handling(int argc);
 
 //Structs
 room *create_room(char *name, size_t x, size_t y);
