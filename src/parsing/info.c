@@ -33,12 +33,12 @@ void init_info(maze_t *info, char *buffer)
     char **words = my_coolersplit(buffer, " ");
 
     for (int i = 0; words[i] != NULL; i++){
-        if (words[i][0] == '#'){ //##start, end, room
+        if (words[i][0] == '#'){
             num = my_split(words[i + 1], ' ');
             room = create_room(num[0], my_getnbr(num[1]), my_getnbr(num[2]));
             (void)room;
         }
-        if (words[i][1] == '-'){ //x-x (tunnel)
+        if (words[i][1] == '-'){
             num = my_split(words[i], '-');
             info->tunels[my_getnbr(num[0])][my_getnbr(num[1])] = true;
             info->tunels[my_getnbr(num[1])][my_getnbr(num[0])] = true;
