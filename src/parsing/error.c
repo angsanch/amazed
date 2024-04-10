@@ -39,9 +39,9 @@ static int check_map(void)
     return SUCCESS;
 }
 
-maze_t *parse_input(void)
+/*maze_t *parse_input(void)
 {
     if (check_map() == ERROR)
         return NULL;
     return SUCCESS;
-}
+}*/

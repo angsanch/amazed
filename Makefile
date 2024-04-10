@@ -12,8 +12,8 @@ CFLAGS=-Wall -Werror -Wextra
 C_FILES = src/main.c \
 			src/tools/maze.c \
 			src/tools/rooms.c \
-			src/parsing/error.c \
-			src/parsing/info.c
+			src/parsing/utils.c \
+			src/parsing/parser.c \
 
 O_FILES = $(C_FILES:.c=.o)
 

@@ -104,6 +104,7 @@ int list_pop(l_list_t *l, size_t index);
 void *list_get_index(l_list_t *l, size_t index);
 void list_import(l_list_t *l, void **data);
 void **list_export(l_list_t *l, void *(*transform)(void *));
+void list_unlink(l_list_t *l);
 void list_pop_first(l_list_t *l);
 void list_iter(l_list_t *l, void(*func)(void *, void *), void *data);
 ssize_t list_first_fulfil(l_list_t *l, int(*func)(void *, void *), void *data);

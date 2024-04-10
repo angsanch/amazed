@@ -71,3 +71,16 @@ int list_pop(l_list_t *l, size_t index)
     l->len --;
     return (1);
 }
+
+void list_unlink(l_list_t *l)
+{
+    l_elem_t *e = l->first;
+    l_elem_t *next = NULL;
+
+    while (e != NULL) {
+        next = e->next;
+        free(e);
+        e = next;
+    }
+    l->len = 0;
+}

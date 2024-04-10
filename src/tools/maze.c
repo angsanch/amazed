@@ -25,9 +25,20 @@ int add_maze_matrix(maze_t *m, size_t rooms)
     if (m->matrix == NULL || m->tunels == NULL) {
         free(m->matrix);
         free(m->tunels);
-        return (ERROR);
+        return (0);
     }
     for (size_t i = 0; i < rooms; i ++)
         m->tunels[i] = &m->matrix[i * rooms];
-    return (SUCCESS);
+    return (1);
+}
+
+void print_matrix(maze_t *m)
+{
+    if (m->tunels == NULL)
+        my_putstr("(null)");
+    for (size_t i = 0; i < m->room_count; i++) {
+        for (size_t j = 0; j < m->room_count; j ++)
+            my_putchar(m->tunels[j][i] + '0');
+        my_putchar('\n');
+    }
 }

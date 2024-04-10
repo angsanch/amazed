@@ -22,29 +22,32 @@
 
 typedef struct room_information {
     char *name;
-    size_t x;
-    size_t y;
+    ssize_t x;
+    ssize_t y;
+    size_t index;
+    int path;
 } room_t;
 
 typedef struct maze_t_contents {
     size_t bots;//amount of bots
-    size_t start;//index of start room_t
-    size_t end;//index of end room_t
+    ssize_t start;//index of start room_t
+    ssize_t end;//index of end room_t
     size_t room_count;//amount of room_ts
     room_t **room;//all room_t info
     bool *matrix;
     bool **tunels;//matrix of connections
 } maze_t;
 
-maze_t *parse_input(void);//return pointer to maze if succesful or NULL if not
-
-//Structs
+//structs
 room_t *create_room(char *name, size_t x, size_t y);
 void destroy_room(room_t *r);
 int add_maze_matrix(maze_t *m, size_t rooms);
+void print_matrix(maze_t *m);
 void destroy_maze(maze_t *m);
 
-//functs
+//parser
+maze_t *parse_input(void);//return pointer to maze if succesful or NULL if not
 char *get_buffer(void);
+ssize_t find_room_by_name(maze_t *m, char *name);
 void init_info(maze_t *info, char *buffer);
 #endif
