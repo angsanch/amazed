@@ -16,6 +16,6 @@ int main(int argc, char **)
     m = parse_input();
     if (m == NULL)
         return (report_error("Error preparing maze_t.\n", 84));
-    destroy_maze_t(m);
+    destroy_maze(m);
     return (0);
 }

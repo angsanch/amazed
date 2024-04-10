@@ -33,7 +33,7 @@ static int check_map(void)
             break;
         buffer = clean_str(buffer);
         my_printf("%d\n", i);
-        init_info(amaze_td, buffer, i);
+        init_info(amaze_td, buffer);
         i++;
     }
     return SUCCESS;
