@@ -46,4 +46,5 @@ void destroy_maze_t(maze_t *m);
 
 //functs
 char *get_buffer(void);
+void init_info(maze_t *info, char *buffer, int i);
 #endif

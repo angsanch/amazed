@@ -26,7 +26,21 @@ char *get_buffer(void)
     return (buffer);
 }
 
-void init_info()
+void init_info(maze_t *info, char *buffer, int i)
 {
+    char **num;
+    room_t *room;
+    char **words = my_coolersplit(buffer, ' ');
 
+    for (int i = 0; words[i] != NULL; i++){
+        if (words[i][0] == '#'){ //##start, end, room
+            num = my_split(words[i + 1], ' ');
+            room = create_room(num[0], my_getnbr(num[1]), my_getnbr(num[2]));
+        }
+        if (words[i][1] == '-'){ //x-x (tunnel)
+            num = my_split(words[i], '-');
+            info->matrix[my_getnbr(num[0])][my_getnbr(num[1])];
+            info->matrix[my_getnbr(num[1])][my_getnbr(num[0])];
+        }
+    }
 }
