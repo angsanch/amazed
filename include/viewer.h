@@ -28,19 +28,23 @@ typedef struct bot {
     sfTexture *tx_robot;
     sfSprite *spr_robot;
     sfVector2f b_pos;
-    struct robot *next;
+    struct bot *next;
 } bot_t;
-typedef struct room {
+typedef struct roomv {
     sfTexture *tx_room;
     sfSprite *spr_room;
     sfVector2f r_pos;
-    struct room *next;
+    struct roomv *next;
 } roomv_t;
 typedef struct tunnel {
     sfTexture *tx_tunnel;
     sfSprite *spr_tunnel;
     sfVector2f t_pos;
-    struct room *next;
+    struct tunnel *next;
 } tunnel_t;
 
+void init_window_info(window_t *w);
+void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b);
+int window(window_t *window, tunnel_t **tunnel, bot_t **bot, roomv_t **room);
+int check_map(void);
 #endif

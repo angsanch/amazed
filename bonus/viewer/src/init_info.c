@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2024
+** AMazeD
+** File description:
+** initialize info into struct
+*/
+
 #include "../../include/viewer.h"
 
 void init_window_info(window_t *w)
@@ -9,7 +16,7 @@ void init_window_info(window_t *w)
     sfRenderWindow_create(w->mode, "Amazed viewer", sfResize | sfClose, NULL);
 }
 
-static int check_map(void)
+int check_map(void)
 {
     maze_t *amaze_td = my_calloc(sizeof(maze_t), 1);
     roomv_t *room = my_calloc(sizeof(roomv_t), 1);
@@ -49,8 +56,10 @@ void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
         }
         if (my_strcmp(words[i], "##start") == 0){
             num = my_split(words[i + 1], ' ');
+            b->tx_robot = sfTexture_createFromFile("images/ghost.png", NULL);
             b->b_pos.x = my_getnbr(num[1]);
             b->b_pos.y = my_getnbr(num[2]);
+            b->spr_robot = sfSpriteCreate();
         }
     }
 }
