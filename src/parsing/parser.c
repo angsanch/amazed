@@ -172,7 +172,7 @@ static int fill_maze(maze_t *m)
         return (report_error("Memory error creating list.\n", 0));
     room = add_rooms(m, l, &last_line);
     list_destroy(l);
-    if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||\
+    if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||
         (size_t)m->end >= m->room_count || !room) {
         free(last_line);
         return (report_error("Unavailable or invalid data in maze.\n", 0));

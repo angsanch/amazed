@@ -10,14 +10,20 @@
 void print_maze(maze_t *m)
 {
     my_printf("%s\n%zd\n%s\n", "#number_of_robots", m->bots, "#rooms");
-    for (size_t i = 0;m->room_count > i; i++){
+    for (size_t i = 0; m->room_count > i; i++){
         if (i == (size_t)m->start)
             my_putstr("#start\n");
         if (i == (size_t)m->end)
             my_putstr("#end\n");
-        my_printf("%s %d %d\n", m->room[i]->name, m->room[i]->x, m->room[i]->y);
+        my_printf("%s %d %d\n", m->room[i]->name,
+        m->room[i]->x, m->room[i]->y);
     }
-    my_putstr("#tunnels");
+    my_putstr("#tunnels\n");
+    for (size_t a = 0; a < m->room_count; a++) {
+        for (size_t b = a; b < m->room_count; b++) {
+            my_printf((m->tunels[a][b]) ? "%zd-%zd\n" : "", a, b);
+        }
+    }
 }
 
 void destroy_maze(maze_t *m)
