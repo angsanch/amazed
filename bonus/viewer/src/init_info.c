@@ -47,6 +47,7 @@ void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
             num = my_split(words[i + 1], ' ');
             r->r_pos.x = my_getnbr(num[1]);
             r->r_pos.y = my_getnbr(num[2]);
+            r->tx_room = sfTexture_createFromFile("images/room.png", NULL);
         }
         if (words[i][1] == '-'){
             num = my_split(words[i], '-');

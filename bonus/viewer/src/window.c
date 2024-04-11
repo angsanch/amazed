@@ -30,11 +30,13 @@ void destroy(window_t *info, tunnel_t **tunnel, bot_t **bot)
 void displaystuff(tunnel_t **tunnel, bot_t **bot, window_t *w, roomv_t **room)
 {
     for (tunnel_t *t = *tunnel; t != NULL; t = t->next)
-            sfRenderWindow_drawSprite(w->window, t->spr_tunnel, NULL);
+        sfSprite_setPosition(t->spr_tunnel, t->t_pos);
+        sfRenderWindow_drawSprite(w->window, t->spr_tunnel, NULL);
     for (bot_t *b = *bot; b != NULL; b = b->next)
         //movement(b); MAKE MOVEMENT FUNCTION TO MOVE THE BOTS
         sfRenderWindow_drawSprite(w->window, bot->spr_robot, NULL);
-    for (room_t *r = *room; r != NULL; r = r->next)
+    for (roomv_t *r = *room; r != NULL; r = r->next)
+        sfSprite_setPosition(r->spr_room, r->r_pos);
         sfRenderWindow_drawSprite(w->window, r->spr_room, NULL);
 }
 
