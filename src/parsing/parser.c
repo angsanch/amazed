@@ -22,11 +22,11 @@ static int start_maze(maze_t *m)
     int bots;
 
     if (line == NULL)
-        return (0);
+        return (report_error("Unable to get next line\n", 0));
     bots = get_mazed_int(line);
     free(line);
     if (bots < 0)
-        return (0);
+        return (report_error("Invalid amount of numbers\n", 0));
     m->bots = bots;
     m->start = -1;
     m->end = -1;
@@ -39,15 +39,16 @@ static int link_room(maze_t *m, l_list_t *l, char **parts)
         get_mazed_int(parts[1]), get_mazed_int(parts[2]));
 
     if (r == NULL)
-        return (0);
+        return (report_error("Memory problem creating room\n", 0));
     if (r->x < 0 || r->y < 0 || find_room_by_name(m, parts[0]) >= 0) {
         destroy_room(r);
+        my_dprintf(2, "Inavalid room information. (%zd)\n", l->len);
         return (0);
     }
     r->index = l->len;
     if (!list_append(l, r)) {
         destroy_room(r);
-        return (0);
+        return (report_error("Memory problem appending room\n", 0));
     }
     return (1);
 }
@@ -57,7 +58,7 @@ static int add_startend(maze_t *m, char *str, size_t len)
     ssize_t *num = NULL;
 
     if (str[0] >= 0 || my_strlen(str) != 1)
-        return (0);
+        return (report_error("Invalid line parameters.\n", 0));
     switch (str[0]) {
         case -1:
             num = &m->start;
@@ -66,10 +67,10 @@ static int add_startend(maze_t *m, char *str, size_t len)
             num = &m->end;
             break;
         default:
-            return (0);
+            return (report_error("Invalid char.\n", 0));
     }
     if (*num != -1)
-        return (0);
+        return (report_error("Start or end was already set.\n", 0));
     *num = len;
     return (1);
 }
@@ -83,7 +84,7 @@ static int add_room(maze_t *m, l_list_t *l, char *line)
     parts = my_split(line, ' ');
     free(line);
     if (parts == NULL)
-        return (0);
+        return (report_error("Memory problem splitting line.", 0));
     len = get_pointer_array_len(parts);
     if (len == 1)
         status = add_startend(m, parts[0], l->len);
@@ -97,20 +98,18 @@ static int add_room(maze_t *m, l_list_t *l, char *line)
 
 static int add_rooms(maze_t *m, l_list_t *l, char **line)
 {
-    if (l == NULL)
-        return (0);
     while (true) {
         *line = get_buffer();
         if (*line == NULL)
-            return (0);
+            return (report_error("Unable to get next line\n", 0));
         if (my_strchr(*line, '-'))
             break;
         if (!add_room(m, l, *line))
-            return (0);
+            return (report_error("Error adding room.\n", 0));
     }
     if (!add_maze_matrix(m, l->len)) {
         free(line);
-        return (0);
+        return (report_error("Memory error creating matrix.\n", 0));
     }
     m->room = (room_t **)list_export(l, NULL);
     if (m->room)
@@ -125,15 +124,15 @@ static int process_tunel(maze_t *m, char **parts)
     ssize_t ind2;
 
     if (get_pointer_array_len(parts) != 2)
-        return (0);
+        return (report_error("Invalid amount of values for a tunel.\n", 0));
     ind1 = find_room_by_name(m, parts[0]);
     if (ind1 < 0)
-        return (0);
+        return (report_error("Invalid first value for tunel.\n", 0));
     ind2 = find_room_by_name(m, parts[1]);
     if (ind2 < 0)
-        return (0);
+        return (report_error("Invalid second value for tunel.\n", 0));
     if (m->tunels[ind1][ind2] || m->tunels[ind2][ind1])
-        return (0);
+        return (report_error("Tunel already existed.\n", 0));
     m->tunels[ind1][ind2] = true;
     m->tunels[ind2][ind1] = true;
     return (1);
@@ -151,11 +150,11 @@ static int process_tunels(maze_t *m, char *prev_line)
         parts = my_split(line, '-');
         free(line);
         if (parts == NULL)
-            return (0);
+            return (report_error("Invalid first value for tunel.\n", 0));
         result = process_tunel(m, parts);
         free_string_array(parts);
         if (!result)
-            return (0);
+            return (report_error("Error adding tunel.\n", 0));
         line = get_buffer();
     }
 }
@@ -167,16 +166,16 @@ static int fill_maze(maze_t *m)
     char *last_line;
 
     if (!start_maze(m))
-        return (0);
+        return (report_error("Error starting maze.\n", 0));
     l = list_create(&free);
     if (l == NULL)
-        return (0);
+        return (report_error("Memory error creating list.\n", 0));
     room = add_rooms(m, l, &last_line);
     list_destroy(l);
     if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||\
         (size_t)m->end >= m->room_count || !room) {
         free(last_line);
-        return (0);
+        return (report_error("Unavailable or invalid data in maze.\n", 0));
     }
     return (process_tunels(m, last_line));
 }
