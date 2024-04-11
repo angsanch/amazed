@@ -15,7 +15,6 @@ char *clean_str(char *line)
         if (line[i] == '#')
             line[i] = '\n';
     }
-    my_printf("%s", line);
     return (line);
 }
 
@@ -32,7 +31,6 @@ static int check_map(void)
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
         buffer = clean_str(buffer);
-        my_printf("%d\n", i);
         init_info(amaze_td, buffer);
         i++;
     }

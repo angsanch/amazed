@@ -190,5 +190,6 @@ maze_t *parse_input(void)
         destroy_maze(m);
         return (NULL);
     }
+    print_maze(m);
     return (m);
 }

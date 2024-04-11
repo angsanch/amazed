@@ -42,7 +42,7 @@ typedef struct maze_t_contents {
 room_t *create_room(char *name, size_t x, size_t y);
 void destroy_room(room_t *r);
 int add_maze_matrix(maze_t *m, size_t rooms);
-void print_matrix(maze_t *m);
+void print_maze(maze_t *m);
 void destroy_maze(maze_t *m);
 
 //parser
