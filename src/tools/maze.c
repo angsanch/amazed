@@ -7,6 +7,13 @@
 
 #include "../../include/maze.h"
 
+static void printer(char *str)
+{
+    if (str == NULL)
+        return;
+    my_printf("%s\n", str);
+}
+
 void print_maze(maze_t *m)
 {
     my_printf("%s\n%zd\n%s\n", "#number_of_robots", m->bots, "#rooms");
@@ -19,11 +26,7 @@ void print_maze(maze_t *m)
         m->room[i]->x, m->room[i]->y);
     }
     my_putstr("#tunnels\n");
-    for (size_t a = 0; a < m->room_count; a++) {
-        for (size_t b = a; b < m->room_count; b++) {
-            my_printf((m->tunels[a][b]) ? "%zd-%zd\n" : "", a, b);
-        }
-    }
+    list_iter(m->tunel_lines, (void *)printer, NULL);
 }
 
 void destroy_maze(maze_t *m)
@@ -33,6 +36,7 @@ void destroy_maze(maze_t *m)
     free(m->room);
     free(m->matrix);
     free(m->tunels);
+    list_destroy(m->tunel_lines);
     free(m);
 }
 

@@ -91,6 +91,7 @@ int report_error(char *str, int response);
 int my_printf(char const *format, ...);
 int my_sprintf(char *str, char const *format, ...);
 int my_dprintf(int fd, char const *format, ...);
+int my_sbufferf(char **str, char const *format, ...);
 
 void list_delete(l_list_t *l);
 l_list_t *list_destroy(l_list_t *l);

@@ -122,6 +122,7 @@ static int process_tunel(maze_t *m, char **parts)
 {
     ssize_t ind1;
     ssize_t ind2;
+    char *line;
 
     if (get_pointer_array_len(parts) != 2)
         return (report_error("Invalid amount of values for a tunel.\n", 0));
@@ -133,6 +134,9 @@ static int process_tunel(maze_t *m, char **parts)
         return (report_error("Invalid second value for tunel.\n", 0));
     m->tunels[ind1][ind2] = true;
     m->tunels[ind2][ind1] = true;
+    my_sbufferf(&line, "%lu-%lu", ind1, ind2);
+    if (!list_append(m->tunel_lines, line))
+        free(line);
     return (1);
 }
 
@@ -184,6 +188,11 @@ maze_t *parse_input(void)
 
     if (m == NULL)
         return (NULL);
+    m->tunel_lines = list_create(&free);
+    if (m->tunel_lines == NULL) {
+        destroy_maze(m);
+        return (NULL);
+    }
     if (!fill_maze(m)) {
         destroy_maze(m);
         return (NULL);

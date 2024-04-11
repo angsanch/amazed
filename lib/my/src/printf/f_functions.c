@@ -53,6 +53,18 @@ int my_sprintf(char *str, char const *format, ...)
     return (len);
 }
 
+int my_sbufferf(char **str, char const *format, ...)
+{
+    va_list ap;
+
+    va_start(ap, format);
+    *str = genericf(format, &ap);
+    va_end(ap);
+    if (*str == NULL)
+        return (-1);
+    return (my_strlen(*str));
+}
+
 int my_dprintf(int fd, char const *format, ...)
 {
     va_list ap;

@@ -36,6 +36,7 @@ typedef struct maze_t_contents {
     room_t **room;//all room_t info
     bool *matrix;
     bool **tunels;//matrix of connections
+    l_list_t *tunel_lines;
 } maze_t;
 
 //structs
