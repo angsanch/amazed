@@ -7,11 +7,13 @@
 
 #include "../include/maze.h"
 
+/*
 void file_to_stdin(void)
 {
     close(0);
     open("tests/labyrinth1", O_RDONLY);
 }
+*/
 
 int main(int argc, char **)
 {
