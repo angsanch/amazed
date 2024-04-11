@@ -20,6 +20,11 @@
     #define FAIL 84
     #define SUCCESS 0
 
+typedef struct path_information {
+    size_t *nodes;
+    size_t len;
+} path_t;
+
 typedef struct room_information {
     char *name;
     ssize_t x;
@@ -45,10 +50,14 @@ void destroy_room(room_t *r);
 int add_maze_matrix(maze_t *m, size_t rooms);
 void print_maze(maze_t *m);
 void destroy_maze(maze_t *m);
+void destroy_path(path_t *p);
 
 //parser
 maze_t *parse_input(void);//return pointer to maze if succesful or NULL if not
 char *get_buffer(void);
 ssize_t find_room_by_name(maze_t *m, char *name);
-void init_info(maze_t *info, char *buffer);
+
+//logic
+
+
 #endif
