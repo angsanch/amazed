@@ -173,7 +173,8 @@ static int fill_maze(maze_t *m)
         return (0);
     room = add_rooms(m, l, &last_line);
     list_destroy(l);
-    if (m->start == -1 || m->end == -1 || !room) {
+    if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||\
+        (size_t)m->end >= m->room_count || !room) {
         free(last_line);
         return (0);
     }
@@ -190,6 +191,5 @@ maze_t *parse_input(void)
         destroy_maze(m);
         return (NULL);
     }
-    print_matrix(m);
     return (m);
 }
