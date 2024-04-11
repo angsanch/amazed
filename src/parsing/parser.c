@@ -131,8 +131,6 @@ static int process_tunel(maze_t *m, char **parts)
     ind2 = find_room_by_name(m, parts[1]);
     if (ind2 < 0)
         return (report_error("Invalid second value for tunel.\n", 0));
-    if (m->tunels[ind1][ind2] || m->tunels[ind2][ind1])
-        return (report_error("Tunel already existed.\n", 0));
     m->tunels[ind1][ind2] = true;
     m->tunels[ind2][ind1] = true;
     return (1);
