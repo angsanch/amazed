@@ -17,7 +17,7 @@ O_FILES = $(C_FILES:.c=.o)
 NAME=viewer
 
 $(NAME): ../../lib/libmy.a $(O_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) lib/libmy.a
+	$(CC) $(CFLAGS) -o $(NAME) $(O_FILES) ../../lib/libmy.a
 
 all: $(NAME)
 
@@ -30,7 +30,7 @@ fclean: clean
 	rm -f $(NAME)
 
 lib/libmy.a:
-	make -C lib/my
+	make -C ../../lib/my
 
 re: fclean all
 

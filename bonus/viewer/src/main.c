@@ -9,11 +9,10 @@
 
 void work(window_t *w, tunnel_t **tunnel, bot_t **bot, roomv_t **room)
 {
-    char *buffer = get_buffer();
 
     if (check_map() == 0) {
         init_window_info(w);
-        init_all_info(buffer, *room, *tunnel, *bot);
+        init_all_info(w, *room, *tunnel, *bot);
         window(w, tunnel, bot, room);
         free(w);
         free(*tunnel);
@@ -29,7 +28,7 @@ int main(int argc, char **argv)
     bot_t *bot = NULL;
     roomv_t *room = NULL;
 
-    if (argc == 2) {
+    if (argc == 1 && argv[1] == NULL) {
         work(window, &tunnel, &bot, &room);
         return SUCCESS;
     } else

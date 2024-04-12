@@ -22,6 +22,7 @@ int check_map(void)
     roomv_t *room = my_calloc(sizeof(roomv_t), 1);
     tunnel_t *tunnel = my_calloc(sizeof(tunnel_t), 1);
     bot_t *bot = my_calloc(sizeof(bot_t), 1);
+    window_t *window = my_calloc(sizeof(window_t), 1);
     char *buffer = NULL;
     int i = 0;
 
@@ -32,15 +33,16 @@ int check_map(void)
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
         buffer = clean_str(buffer);
-        init_all_info(buffer, room, tunnel, bot);
+        init_all_info(window, room, tunnel, bot);
         i++;
     }
     return SUCCESS;
 }
 
-void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
+void init_all_info(window_t *w, roomv_t *r, tunnel_t *t, bot_t *b)
 {
     char **num;
+    char *buffer = get_buffer();
     char **words = my_coolersplit(buffer, " ");
 
     for (int i = 0; words[i] != NULL; i++){
@@ -48,7 +50,7 @@ void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
             num = my_split(words[i + 1], ' ');
             r->r_pos.x = my_getnbr(num[1]);
             r->r_pos.y = my_getnbr(num[2]);
-            r->tx_room = sfTexture_createFromFile("images/room.png", NULL);
+            w->tx_room = sfTexture_createFromFile("images/room.png", NULL);
         }
         if (words[i][1] == '-'){
             num = my_split(words[i], '-');
@@ -58,7 +60,7 @@ void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
         }
         if (my_strcmp(words[i], "##start") == 0){
             num = my_split(words[i + 1], ' ');
-            b->tx_robot = sfTexture_createFromFile("images/ghost.png", NULL);
+            w->tx_bot = sfTexture_createFromFile("images/ghost.png", NULL);
             b->b_pos.x = my_getnbr(num[1]);
             b->b_pos.y = my_getnbr(num[2]);
         }

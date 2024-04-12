@@ -19,33 +19,30 @@
 //struct for the CSFML
 typedef struct window {
     sfRenderWindow *window;
-    // sfTexture *tx_background;
-    // sfSprite *spr_background;
+    sfTexture *tx_room;
+    sfTexture *tx_bot;
     sfVideoMode mode;
     sfEvent event;
 } window_t;
 typedef struct bot {
-    sfTexture *tx_robot;
-    sfSprite *spr_robot;
+    sfSprite *spr_bot;
     sfVector2f b_pos;
     struct bot *next;
 } bot_t;
 typedef struct roomv {
-    sfTexture *tx_room;
     sfSprite *spr_room;
     sfVector2f r_pos;
     struct roomv *next;
 } roomv_t;
 typedef struct tunnel {
-    sfTexture *tx_tunnel;
     sfSprite *spr_tunnel;
     sfVector2f t_pos;
+    sfShape *line;
     struct tunnel *next;
 } tunnel_t;
 
 void init_window_info(window_t *w);
-void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b);
+void init_all_info(window_t *w, roomv_t *r, tunnel_t *t, bot_t *b);
 int window(window_t *window, tunnel_t **tunnel, bot_t **bot, roomv_t **room);
 int check_map(void);
-char *clean_str(char *line);
 #endif
