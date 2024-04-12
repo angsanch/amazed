@@ -19,8 +19,9 @@
 
 int move_path(maze_t *m, path_t *p)
 {
-    (void) m;
     size_t begining = p->bots;
+
+    (void) m;
     begining = begining - 1;
     p->traveling = p->traveling + 1;
     return (0);
