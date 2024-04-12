@@ -29,7 +29,6 @@ typedef struct room_information {
     char *name;
     ssize_t x;
     ssize_t y;
-    size_t index;
     int path;
 } room_t;
 

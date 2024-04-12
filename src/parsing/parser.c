@@ -45,7 +45,6 @@ static int link_room(maze_t *m, l_list_t *l, char **parts)
         my_dprintf(2, "Inavalid room information. (%zd)\n", l->len);
         return (0);
     }
-    r->index = l->len;
     if (!list_append(l, r)) {
         destroy_room(r);
         return (report_error("Memory problem appending room\n", 0));

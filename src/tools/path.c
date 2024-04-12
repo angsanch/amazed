@@ -7,6 +7,7 @@
 
 #include "../../include/maze.h"
 
+
 void destroy_path(path_t *p)
 {
     if (p == NULL)
