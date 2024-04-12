@@ -58,6 +58,6 @@ ssize_t find_room_by_name(maze_t *m, char *name);
 char *clean_str(char *line);
 
 //logic
-
+path_t *find_short_path(maze_t *m);
 
 #endif
