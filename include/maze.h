@@ -23,6 +23,10 @@
 typedef struct path_information {
     size_t *nodes;
     size_t len;
+    size_t bots;
+    size_t traveling;
+    size_t arrived;
+    size_t tail;
 } path_t;
 
 typedef struct room_information {
@@ -59,5 +63,6 @@ char *clean_str(char *line);
 
 //logic
 path_t *find_short_path(maze_t *m);
+void move_path(maze_t *m, path_t *p);
 
 #endif

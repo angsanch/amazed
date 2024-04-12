@@ -16,6 +16,7 @@ C_FILES = src/main.c \
 			src/parsing/utils.c \
 			src/parsing/parser.c \
 			src/logic/pather.c \
+			src/logic/printer.c \
 
 O_FILES = $(C_FILES:.c=.o)
 
