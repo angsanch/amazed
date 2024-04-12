@@ -45,4 +45,5 @@ void init_window_info(window_t *w);
 void init_all_info(window_t *w, roomv_t *r, tunnel_t *t, bot_t *b);
 int window(window_t *window, tunnel_t **tunnel, bot_t **bot, roomv_t **room);
 int check_map(void);
+char *clean_str(char *line);
 #endif
