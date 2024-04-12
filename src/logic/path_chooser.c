@@ -56,7 +56,7 @@ static size_t spread_bots(maze_t *m, path_t **paths, size_t path_count)
 void open_the_gates(maze_t *m, path_t **paths, size_t path_count)
 {
     size_t paths_moved = 1;
-    int moved;
+    int moved = 1;
 
     while (moved > 0) {
         moved = 0;
