@@ -43,7 +43,7 @@ typedef struct maze_t_contents {
     l_list_t *tunel_lines;
 } maze_t;
 
-//structs
+//tools
 room_t *create_room(char *name, size_t x, size_t y);
 void destroy_room(room_t *r);
 int add_maze_matrix(maze_t *m, size_t rooms);
@@ -55,7 +55,6 @@ void destroy_path(path_t *p);
 maze_t *parse_input(void);//return pointer to maze if succesful or NULL if not
 char *get_buffer(void);
 ssize_t find_room_by_name(maze_t *m, char *name);
-char *clean_str(char *line);
 
 //logic
 path_t *find_short_path(maze_t *m);
