@@ -4,7 +4,7 @@
 ** File description:
 ** window
 */
-#include "../../include/viewer.h"
+#include "../../../include/viewer.h"
 
 void events(window_t *info)
 {

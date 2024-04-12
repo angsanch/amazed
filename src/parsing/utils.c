@@ -20,7 +20,7 @@ static int true_replace(char **base, char *key, char *replace)
     return (1);
 }
 
-static char *clean_str(char *line)
+char *clean_str(char *line)
 {
     char *clean;
     char negs[2] = "\0\0";

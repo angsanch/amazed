@@ -5,19 +5,20 @@
 ** main
 */
 
-#include "../../include/viewer.h"
+#include "../../../include/viewer.h"
 
 void work(window_t *w, tunnel_t **tunnel, bot_t **bot, roomv_t **room)
 {
-    if (check_map(void) == 0) {
+    char *buffer = get_buffer();
+
+    if (check_map() == 0) {
         init_window_info(w);
-        init_all_info(tunnel, file, bot);
+        init_all_info(buffer, *room, *tunnel, *bot);
         window(w, tunnel, bot, room);
         free(w);
         free(*tunnel);
         free(*bot);
         free(*room);
-        free(file);
     }
 }
 

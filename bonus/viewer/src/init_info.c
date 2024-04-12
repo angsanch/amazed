@@ -5,7 +5,7 @@
 ** initialize info into struct
 */
 
-#include "../../include/viewer.h"
+#include "../../../include/viewer.h"
 
 void init_window_info(window_t *w)
 {
@@ -21,6 +21,7 @@ int check_map(void)
     maze_t *amaze_td = my_calloc(sizeof(maze_t), 1);
     roomv_t *room = my_calloc(sizeof(roomv_t), 1);
     tunnel_t *tunnel = my_calloc(sizeof(tunnel_t), 1);
+    bot_t *bot = my_calloc(sizeof(bot_t), 1);
     char *buffer = NULL;
     int i = 0;
 
@@ -31,7 +32,7 @@ int check_map(void)
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
         buffer = clean_str(buffer);
-        init_all_info(buffer, room, tunnel);
+        init_all_info(buffer, room, tunnel, bot);
         i++;
     }
     return SUCCESS;
@@ -60,7 +61,6 @@ void init_all_info(char *buffer, roomv_t *r, tunnel_t *t, bot_t *b)
             b->tx_robot = sfTexture_createFromFile("images/ghost.png", NULL);
             b->b_pos.x = my_getnbr(num[1]);
             b->b_pos.y = my_getnbr(num[2]);
-            b->spr_robot = sfSpriteCreate();
         }
     }
 }

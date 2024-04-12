@@ -14,7 +14,7 @@
     #include <SFML/Window/Keyboard.h>
     #include <SFML/Window/Mouse.h>
     #include <SFML/Window/Sensor.h>
-    #include "../../include/maze.h"
+    #include "maze.h"
 
 //struct for the CSFML
 typedef struct window {
