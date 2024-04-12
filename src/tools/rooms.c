@@ -9,7 +9,7 @@
 
 room_t *create_room(char *name, size_t x, size_t y)
 {
-    room_t *r = malloc(sizeof(room_t) * 1);
+    room_t *r = my_calloc(sizeof(room_t), 1);
 
     if (r == NULL)
         return (NULL);

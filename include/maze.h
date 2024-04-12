@@ -63,6 +63,7 @@ char *clean_str(char *line);
 
 //logic
 path_t *find_short_path(maze_t *m);
-void move_path(maze_t *m, path_t *p);
+int move_path(maze_t *m, path_t *p);
+int move_bots(maze_t *m);
 
 #endif

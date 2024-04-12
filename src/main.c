@@ -18,12 +18,14 @@ void file_to_stdin(void)
 int main(int argc, char **)
 {
     maze_t *m;
+    int status;
 
     if (argc != 1)
         return (report_error("This program doesnt need parameters\n", 84));
     m = parse_input();
     if (m == NULL)
         return (report_error("Error preparing maze.\n", 84));
+    status = move_bots(m);
     destroy_maze(m);
-    return (0);
+    return ((!status) ? 84 : 0);
 }

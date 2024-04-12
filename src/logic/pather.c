@@ -99,5 +99,5 @@ path_t *find_short_path(maze_t *m)
         my_memset(activated, 0, sizeof(activated));
         act = count_active(m, active);
     }
-    return ((act > 0) ? build_path(m, reached) : NULL);
+    return ((reached[m->end] > 0) ? build_path(m, reached) : NULL);
 }
