@@ -32,7 +32,6 @@ int check_map(void)
         buffer = get_buffer();
         if (buffer == NULL || my_strcmp(buffer, "\0") == 0)
             break;
-        buffer = clean_str(buffer);
         init_all_info(window, room, tunnel, bot);
         i++;
     }
@@ -43,6 +42,7 @@ void init_all_info(window_t *w, roomv_t *r, tunnel_t *t, bot_t *b)
 {
     char **num;
     char *buffer = get_buffer();
+    buffer = clean_str(buffer);
     char **words = my_coolersplit(buffer, " ");
 
     for (int i = 0; words[i] != NULL; i++){
