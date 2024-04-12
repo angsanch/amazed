@@ -49,6 +49,7 @@ static size_t spread_bots(maze_t *m, path_t **paths, size_t path_count)
     for (total = 0; paths[total] != NULL && total < path_count; total ++) {
         if (paths[total]->bots == 0)
             break;
+        paths[total]->waiting = paths[total]->bots;
     }
     return (total);
 }
@@ -58,6 +59,7 @@ void open_the_gates(maze_t *m, path_t **paths, size_t path_count)
     size_t paths_moved = 0;
     int moved = 1;
 
+    my_printf("%s\n", "#moves");
     while (moved > 0) {
         paths_moved = 0;
         for (size_t i = 0; i < path_count; i ++) {

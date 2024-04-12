@@ -7,22 +7,30 @@
 
 #include "../../include/maze.h"
 
-/*static void print_rango(size_t a, size_t b, path_t *p, maze_t *m)
+static void print_range(maze_t *m, path_t *p, ssize_t a, ssize_t b)
 {
-    if (a < b) {
-        putchar('P');
-        for (size_t i = a; i <= b; i++) {
-            my_printf("%s", m->room[p->nodes[a]]->name);
-        }
+    for (ssize_t i = b; i > a; i --) {
+        my_printf("P%s-%s%s", m->room[p->nodes[i - 1]]->name,
+            m->room[p->nodes[i]]->name, (i - 1 > a) ? " " : "");
     }
-} */
+}
 
 int move_path(maze_t *m, path_t *p)
 {
-    size_t begining = p->bots;
-
-    (void) m;
-    begining = begining - 1;
-    p->traveling = p->traveling + 1;
-    return (0);
+    if (p->bots == p->arrived)
+        return (0);
+    if (p->waiting == 0)
+        p->tail ++;
+    else {
+        p->waiting --;
+        p->traveling ++;
+    }
+    if (p->tail + p->traveling >= p->len) {
+        p->traveling --;
+        p->arrived ++;
+    }
+    if (p->bots == p->arrived)
+        return (0);
+    print_range(m, p, p->tail, p->tail + p->traveling);
+    return (1);
 }

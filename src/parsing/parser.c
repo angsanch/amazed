@@ -71,6 +71,8 @@ static int add_startend(maze_t *m, char *str, size_t len)
     if (*num != -1)
         return (report_error("Start or end was already set.\n", 0));
     *num = len;
+    if (m->start == m->end)
+        return (report_error("Start end end are the same.\n", 0));
     return (1);
 }
 
@@ -174,10 +176,8 @@ static int fill_maze(maze_t *m)
     room = add_rooms(m, l, &last_line);
     list_destroy(l);
     if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||
-        (size_t)m->end >= m->room_count || !room) {
-        free(last_line);
+        (size_t)m->end >= m->room_count || !room)
         return (report_error("Unavailable or invalid data in maze.\n", 0));
-    }
     return (process_tunels(m, last_line));
 }
 
