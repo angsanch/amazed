@@ -39,7 +39,7 @@ static size_t find_previous(maze_t *m, size_t *reached, size_t current)
     for (size_t i = 0; i < m->room_count; i ++) {
         if (!m->tunels[current][i])
             continue;
-        if (reached[i] < min) {
+        if (reached[i] < min && reached[i] != 0) {
             min = reached[i];
             index = i;
         }
