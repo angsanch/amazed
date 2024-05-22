@@ -7,6 +7,8 @@
 
 amazed
 
+tests/*
+
 coding-style-reports.log
 .vscode
 

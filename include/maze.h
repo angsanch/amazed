@@ -24,6 +24,7 @@ typedef struct path_information {
     size_t *nodes;
     size_t len;
     size_t bots;
+    size_t lowest_id;
     size_t waiting;
     size_t traveling;
     size_t arrived;

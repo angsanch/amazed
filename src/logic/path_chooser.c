@@ -33,22 +33,23 @@ static void free_all_paths(path_t **paths)
 
 static size_t spread_bots(maze_t *m, path_t **paths, size_t path_count)
 {
-    size_t turns = paths[0]->len + 1;
     size_t remaining = m->bots;
     size_t total = 0;
     int added;
 
-    while (remaining > 0) {
+    for (size_t turns = paths[0]->len + 1; remaining > 0; turns ++) {
         for (size_t i = 0; i < path_count && remaining > 0; i ++) {
             added = (turns >= paths[i]->len) ? 1 : 0;
             paths[i]->bots += added;
             remaining -= added;
         }
-        turns ++;
     }
+    added = 0;
     for (total = 0; paths[total] != NULL && total < path_count; total ++) {
         if (paths[total]->bots == 0)
             break;
+        paths[total]->lowest_id = added;
+        added += paths[total]->bots;
         paths[total]->waiting = paths[total]->bots;
     }
     return (total);

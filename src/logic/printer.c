@@ -9,9 +9,12 @@
 
 static void print_range(maze_t *m, path_t *p, ssize_t a, ssize_t b)
 {
+    size_t robot_id = p->arrived + p->lowest_id;
+
     for (ssize_t i = b; i > a; i --) {
-        my_printf("P%s-%s%s", m->room[p->nodes[i - 1]]->name,
+        my_printf("P%zd-%s%s", robot_id,
             m->room[p->nodes[i]]->name, (i - 1 > a) ? " " : "");
+        robot_id ++;
     }
 }
 
