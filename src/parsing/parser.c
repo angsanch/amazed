@@ -135,7 +135,7 @@ static int process_tunel(maze_t *m, char **parts)
         return (report_error("Invalid second value for tunel.\n", 0));
     m->tunels[ind1][ind2] = true;
     m->tunels[ind2][ind1] = true;
-    my_sbufferf(&line, "%lu-%lu", ind1, ind2);
+    my_sbufferf(&line, "%s-%s", m->room[ind1]->name, m->room[ind2]->name);
     if (!list_append(m->tunel_lines, line))
         free(line);
     return (1);

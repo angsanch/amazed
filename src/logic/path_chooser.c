@@ -44,7 +44,7 @@ static size_t spread_bots(maze_t *m, path_t **paths, size_t path_count)
             remaining -= added;
         }
     }
-    added = 0;
+    added = 1;
     for (total = 0; paths[total] != NULL && total < path_count; total ++) {
         if (paths[total]->bots == 0)
             break;
