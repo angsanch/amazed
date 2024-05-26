@@ -53,6 +53,10 @@ char *get_buffer(void)
         if (buffer[i] == '\t')
             buffer[i] = ' ';
     buffer = clean_str(buffer);
+    if (my_strlen(buffer) == 0) {
+        free(buffer);
+        return (get_buffer());
+    }
     return (buffer);
 }
 

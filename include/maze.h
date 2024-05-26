@@ -39,14 +39,13 @@ typedef struct room_information {
 } room_t;
 
 typedef struct maze_t_contents {
-    size_t bots;//amount of bots
+    ssize_t bots;//amount of bots
     ssize_t start;//index of start room_t
     ssize_t end;//index of end room_t
     size_t room_count;//amount of room_ts
     room_t **room;//all room_t info
     bool *matrix;
     bool **tunels;//matrix of connections
-    l_list_t *tunel_lines;
 } maze_t;
 
 //tools

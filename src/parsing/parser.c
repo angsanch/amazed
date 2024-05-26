@@ -25,8 +25,9 @@ static int start_maze(maze_t *m)
         return (report_error("Unable to get next line\n", 0));
     bots = get_mazed_int(line);
     free(line);
-    if (bots < 0)
+    if (bots <= 0)
         return (report_error("Invalid amount of numbers\n", 0));
+    my_printf("#number_of_robots\n%d\n", bots);
     m->bots = bots;
     m->start = -1;
     m->end = -1;
@@ -49,6 +50,7 @@ static int link_room(maze_t *m, l_list_t *l, char **parts)
         destroy_room(r);
         return (report_error("Memory problem appending room\n", 0));
     }
+    my_printf("%s %lu %lu\n", r->name, r->x, r->y);
     return (1);
 }
 
@@ -58,16 +60,13 @@ static int add_startend(maze_t *m, char *str, size_t len)
 
     if (str[0] >= 0 || my_strlen(str) != 1)
         return (report_error("Invalid line parameters.\n", 0));
-    switch (str[0]) {
-        case -1:
-            num = &m->start;
-            break;
-        case -2:
-            num = &m->end;
-            break;
-        default:
-            return (report_error("Invalid char.\n", 0));
-    }
+    if (str[0] == -1)
+        num = &m->start;
+    else if (str[0] == -2)
+        num = &m->end;
+    else
+        return (report_error("Invalid char.\n", 0));
+    my_printf("%s\n", (str[0] == -1) ? "##start" : "##end");
     if (*num != -1)
         return (report_error("Start or end was already set.\n", 0));
     *num = len;
@@ -99,6 +98,7 @@ static int add_room(maze_t *m, l_list_t *l, char *line)
 
 static int add_rooms(maze_t *m, l_list_t *l, char **line)
 {
+    my_putstr("#rooms\n");
     while (true) {
         *line = get_buffer();
         if (*line == NULL)
@@ -123,7 +123,6 @@ static int process_tunel(maze_t *m, char **parts)
 {
     ssize_t ind1;
     ssize_t ind2;
-    char *line;
 
     if (get_pointer_array_len(parts) != 2)
         return (report_error("Invalid amount of values for a tunel.\n", 0));
@@ -135,9 +134,7 @@ static int process_tunel(maze_t *m, char **parts)
         return (report_error("Invalid second value for tunel.\n", 0));
     m->tunels[ind1][ind2] = true;
     m->tunels[ind2][ind1] = true;
-    my_sbufferf(&line, "%s-%s", m->room[ind1]->name, m->room[ind2]->name);
-    if (!list_append(m->tunel_lines, line))
-        free(line);
+    my_printf("%s-%s\n", m->room[ind1]->name, m->room[ind2]->name);
     return (1);
 }
 
@@ -147,6 +144,7 @@ static int process_tunels(maze_t *m, char *prev_line)
     char **parts;
     int result;
 
+    my_putstr("#tunnels\n");
     while (true) {
         if (line == NULL)
             return (1);
@@ -176,8 +174,10 @@ static int fill_maze(maze_t *m)
     room = add_rooms(m, l, &last_line);
     list_destroy(l);
     if (m->start == -1 || m->end == -1 || (size_t)m->start >= m->room_count ||
-        (size_t)m->end >= m->room_count || !room)
+        (size_t)m->end >= m->room_count || !room) {
+        free(last_line);
         return (report_error("Unavailable or invalid data in maze.\n", 0));
+    }
     return (process_tunels(m, last_line));
 }
 
@@ -187,15 +187,9 @@ maze_t *parse_input(void)
 
     if (m == NULL)
         return (NULL);
-    m->tunel_lines = list_create(&free);
-    if (m->tunel_lines == NULL) {
-        destroy_maze(m);
-        return (NULL);
-    }
     if (!fill_maze(m)) {
         destroy_maze(m);
         return (NULL);
     }
-    print_maze(m);
     return (m);
 }
