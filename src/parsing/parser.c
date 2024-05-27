@@ -115,7 +115,6 @@ static int add_rooms(maze_t *m, l_list_t *l, char **line)
     m->room = (room_t **)list_export(l, NULL);
     if (m->room)
         list_unlink(l);
-    free((m->room) ? NULL : *line);
     return (m->room != NULL);
 }
 
